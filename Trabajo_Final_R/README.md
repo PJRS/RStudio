@@ -13,12 +13,12 @@ Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida 
 El proyecto consta de tres partes:
 
 1. Comparativa de dos fuentes de recursos:
-  1.1
-  1.2
+  1.1 A
+  1.2 B
 
 2. Comparativa de dos fuentes de recursos de Markdown:
-  2.1
-  2.2
+  2.1 C
+  2.2 D
 
 3. Estudio descriptivo:
   3.1. Un gráfico generado con `ggplot2`.
