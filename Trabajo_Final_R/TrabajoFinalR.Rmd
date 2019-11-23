@@ -2,29 +2,189 @@
 title: "Trabajo Final R"
 author: "Pavel Ramirez Samaniego"
 date: "23/11/2019"
-output: html_document
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    
+    theme: spacelab
+    highlight: haddock
+    
 ---
+
+<script>
+   $(document).ready(function() {
+     $head = $('#header');
+     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+   });
+</script>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# INTRODUCCIÓN
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+1. Recursos sobre expresiones regulares discutidas: RPubs y Riptutorial.
+1. Recursos sobre markdown discutidas: Rstudio y r4ds
+1. Estudio descriptivo del dataset contenido en R ChickWeight.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### 1. Expresiones Regulares {.tabset .tabset-pills}
 
-```{r cars}
-summary(cars)
+<div style=“text-align: justify”>
+Expresión regular, también conocida como regex, regexp o expresión racional, es una secuencia de caracteres que forma un patrón de búsqueda, principalmente utilizada para la búsqueda de patrones de cadenas de caracteres u operaciones de sustituciones.
+A continuación, compararemos dos páginas de recursos para su aprendizaje que se pueden encontrar en Internet, destacando los pros y los contras de ambas.
+<div/>
+
+### 1.1. RPubs {.tabset .tabset-pills}
+
+RPubs es el primer recurso que vamos a estudiar:
+<center>Vista previa de RPubs</center>
+<div/>
+- Contenido: Teórico y ejemplificativo. Contiene una estructura lógica, empezando por la teoría básica, para luego adentrarse en la implementación en R con sus debidos ejemplos.
+- Código: Correctamente ejecutado. Se muestra el código cuando es justificado y relevante, es decir, cuando quiere mostrar como se ha llegado a aquello que trata de enseñar.
+- Estética: Armoniosa y clara. Con un patrón coherente sin excesivos formatos de texto especiales.
+
+### 1.2. Riptutorial {.tabset .tabset-pills}
+
+Riptutorial es el segundo recurso que vamos a estudiar:
+<center>Vista previa de Riptutorial</center>
+<div/>
+- Contenido: Escaso y poco claro. Destaca las cuestiones teóricas básicas, sin poner ejemplos de ello. Para un usuario que se está iniciando con este lenguaje resulta complicado su comprendimiento y aplicación práctica.
+- Código: Limitado. Más allá de enlace a otras páginas web y cambio de color sin un patrón o lógica claros, no existe un código formulado de cierta complejidad.
+- Estética: Estresante. No cumple la normativa ortotipográfica ya que, tiene un color destacado y un tamaño de fuente mayor los subtítulos dentro de las secciones.
+
+
+### CONCLUSIÓN:{.tabset .tabset-pills}
+
+El nombre de la página (RIP tutorial) es un buen indicativo de la calidad instructiva del mismo. En mi opinión, llamarle tutorial es excederse. Por lo tanto, tras compararlo con los recursos que hay en RPubs, llegamos a la determinación de que este último es mejor para el aprendizaje sobre las regex. <div/>
+
+### 2. R Markdown {.tabset .tabset-pills}
+
+<div style=“text-align: justify”>
+R Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas y informes de R. Markdown es un formato de sintaxis simple para crear documentos en HTML, PDF, y Word.
+A continuación, siguiendo con el mismo patrón que en el punto anterior, compararemos dos páginas de recursos para su aprendizaje que se pueden encontrar en Internet por su contenido, código y estética.
+En base a dichos puntos, concluiremos cuál es mejor y cuál peor para formarse y crear buenos documentos en formato R Markdown. <div/>
+### 2.1. Rstudio {.tabset .tabset-pills}
+Rstudio.com
+<center>Vista previa de RStudio</center>
+<div/>
+- Contenido: Conciso y claro. Indicando
+- Código: Ejecución correcta.
+- Estética: Coherente. Estéticamente agradable, deja claro cómo se ve en un documento Markdown el código descrito
+
+### 2.2. R4ds {.tabset .tabset-pills}
+
+r4ds
+<center>Vista previa de r4ds</center>
+<div/>
+- Contenido:
+- Código:
+- Estética:
+
+### CONCLUSIÓN: {.tabset .tabset-pills} 
+RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alcanza un documento RMarkdown. <div/>
+
+
+
+![GitHub](recursos/logo.jpg)
+
+## Sobre la base de datos
+
+Se va a hacer un análisis del conjunto de datos de R _*Beavers1*_
+
+Cada conjunto de datos, compila la temperatura del cuerpo de dos castores hembras, cada 10 minutos por un período menor a un día en el estado de Wisconsin, Estados Unidos
+
+### Resumen de la base de datos:
+
+```{r beaver1, echo=FALSE}
+knitr::kable(summary(beaver1)
+             )
+nrow(beaver1)
 ```
 
-## Including Plots
+# ANALISIS DE DATOS
 
-You can also embed plots, for example:
+## Entender y preparar los datos
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+### Entender las variables
+
+> day
+
+La variable **day**, es el día en que se hizo la observación. Solo se observan dos días. Diciembre 12 = 346 y Diciembre 13 = 347.
+Vamos a convertir esta base de datos en una serie de tiempo, dejando solo los datos de Diciembre 12
+
+```{r unirtablas, echo=FALSE}
+d_beaver1 <- beaver1[beaver1$day == 346, ]
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+> time
+
+La variable **time** es una variable continua. Contiene la hora en que se tomó la muestra de temperatura. Esta en formato militar 0330, equivalente a 3:30
+
+
+> temp
+
+La variable **temp** esta en grados Celsius, estadarizada con la formúla:
+
+\usepackage{gensymb}
+
+
+$$ fahrenheit = celsius \times \frac{9}{5} + 32 $$
+
+> activ
+
+Esta es una variable binomial. Donde 0 = no tuvo actividad fuera del campo. Y 1 = tuvo actividad fuera del campo.
+
+```{r activ, echo = FALSE}
+table(d_beaver1$activ)
+```
+
+
+
+## Gráficos
+
+La siguiente tabla muestra la temperatura de los castores a traves del día, para Diciembre 12 únicamente. 
+
+
+
+
+```{r grap1, echo = FALSE}
+n_beaver1 <- d_beaver1[d_beaver1$time > 500, ]
+# hay un corte en la secuencia de los datos, entonces solo se usaron a partir de las 500h
+plot(n_beaver1$time, n_beaver1$temp, type = "l", main = "Temp castores", xlab = "Hora", ylab = "Temp en C")
+```
+
+
+No se observa una tendencia contundente en la temperatura del cuerpo de los castores a traves del día. Esto resulta extraño, pues la periodicidad en la toma de muestra es de 10 minutos.
+
+Según <https://es.weatherspark.com/> la temperatura ambiente promedio en Wisconsin, para el día 12 de Diciembre oscila entre 2 C y -4 C. 
+
+Por motivos de este ejercicio, se va a generar una variable de temperatura del ambiente **temp_ambiente** con distribución $N(µ= -1, σ=1)$
+Y se va a desorderar la variable **temp** para comparar las dos variables
+
+```{r distri, echo = FALSE}
+temp_ambiente <- rnorm(nrow(n_beaver1), -1, 1)
+```
+
+```{r graptemp, echo = FALSE}
+set.seed(6543)
+tempcastor <- sample(n_beaver1$temp)
+
+
+plot(tempcastor, temp_ambiente, main = "Temp ambiente vs Temp castor")
+abline(v = mean(n_beaver1$temp), col = "blue")
+abline(h = -1, col = "red")
+
+```
+
+En este gráfico observamos que la temperatura del cuerpo del animal tiende a ser constante en la media.  
+
+## Conclusiones
+
+La base de datos estudiada no permite hacer mucha inferencia las caracteristicas del Castor Canadensis. Se puede decir a grandes rasgos, que para el día 12 de Diciembre de 1990, se tomó la temperatura a un ejemplar hembra Castor Canadensis en el estado de Wisconsin, Estados Unidos; y que este ejemplar mostró consistencia en la temperatura de su cuerpo. Se intuye, que los castores tienen mecanismos para equilibrar su temperatura corporal dependiendo a la temperatura ambiente.
+
