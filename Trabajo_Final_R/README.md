@@ -4,23 +4,30 @@ _Autor:_
 
 >Pavel Ramirez
 
+<script>
+   $(document).ready(function() {
+     $head = $('#header');
+     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+   });
+</script>
+
 
 ## Versión básica
 
-Se trata de crear un documento en RMarkdown que contenga los elementos que se describen a continuación. El entregable tiene que ser una carpeta comprimida (en `.zip` necesariamente) que contenga lo siguiente:
-
-1. El código fuente del documento (el fichero `.Rmd`). Este documento tiene que estar configurado para generar una salida en formato `.html`.
-1. El documento compilado (como `.html`).
-1. Opcionalmente, de ser necesario, una carpeta llamada `recursos` que almacene otras cosas necesarias para compilar el documento original.
-
-Importante:
-
-1. El entregable estará compilado como `.zip`.
-2. Tendrá la estructura indicada más arriba.
-3. El fichero .Rmd tiene que compilarse en mi ordenador. No puede contener errores a la hora de generarse.
-
+Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta
 
 ### Contenido del documento
+
+El proyecto consta de tres partes:
+
+Comparativa de dos fuentes de recursos de Regex:
+RPubs
+Riptutorial
+Comparativa de dos fuentes de recursos de Markdown:
+RStudio
+R4ds
+Estudio descriptivo del dataset contenido en R ChickWeight
+
 
 
 El contenido mínimo del documento en su versión básica es el siguiente:
