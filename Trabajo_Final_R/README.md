@@ -1,8 +1,8 @@
 # Trabajo Final R
 
-_Autor:_
+>Autor:
 
->Pavel Ramirez
+_Pavel Ramirez_
 
 ## Contenido del documento
 
@@ -19,12 +19,15 @@ El proyecto consta de tres partes:
   1.2 B
 
 2. Comparativa de dos fuentes de recursos de Markdown:
+
   2.1 C
   
   2.2 D
 
 3. Estudio descriptivo:
+
   3.1. Un gráfico generado con `ggplot2`.
+
   3.2. Una tabla.
 
 ## Versión avanzada
