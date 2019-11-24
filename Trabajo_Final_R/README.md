@@ -1,8 +1,6 @@
 # Trabajo Final R
 
->Autor:
-
-_Pavel Ramirez_
+>Autor: _Pavel Ramirez_
 
 ## Contenido del documento
 
