@@ -22,7 +22,21 @@ output:
 
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+
+#install.packages("mapproj")
+
+# install.packages("kableExtra")
+library(knitr)
+library(kableExtra)
+
+library(mapproj)
+library(plyr)
+library(ggplot2)
+
+
+
 ```
 
 # INTRODUCCIÓN
@@ -33,29 +47,33 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 1. Expresiones Regulares {.tabset .tabset-pills}
 
-<div style=“text-align: justify”>
+<div style="text-align: justify">
 Expresión regular, también conocida como regex, regexp o expresión racional, es una secuencia de caracteres que forma un patrón de búsqueda, principalmente utilizada para la búsqueda de patrones de cadenas de caracteres u operaciones de sustituciones.
 A continuación, compararemos dos páginas de recursos para su aprendizaje que se pueden encontrar en Internet, destacando los pros y los contras de ambas.
-<div/>
+</div>
 
 ### 1.1. RPubs {.tabset .tabset-pills}
 
 RPubs es el primer recurso que vamos a estudiar:
 <center>Vista previa de RPubs</center>
-<div/>
+
+<div style="text-align: justify">
 - Contenido: Teórico y ejemplificativo. Contiene una estructura lógica, empezando por la teoría básica, para luego adentrarse en la implementación en R con sus debidos ejemplos.
 - Código: Correctamente ejecutado. Se muestra el código cuando es justificado y relevante, es decir, cuando quiere mostrar como se ha llegado a aquello que trata de enseñar.
 - Estética: Armoniosa y clara. Con un patrón coherente sin excesivos formatos de texto especiales.
+</div>
 
 ### 1.2. Riptutorial {.tabset .tabset-pills}
 
 Riptutorial es el segundo recurso que vamos a estudiar:
 <center>Vista previa de Riptutorial</center>
-<div/>
+
+
+<div style="text-align: justify">
 - Contenido: Escaso y poco claro. Destaca las cuestiones teóricas básicas, sin poner ejemplos de ello. Para un usuario que se está iniciando con este lenguaje resulta complicado su comprendimiento y aplicación práctica.
 - Código: Limitado. Más allá de enlace a otras páginas web y cambio de color sin un patrón o lógica claros, no existe un código formulado de cierta complejidad.
 - Estética: Estresante. No cumple la normativa ortotipográfica ya que, tiene un color destacado y un tamaño de fuente mayor los subtítulos dentro de las secciones.
-
+</div>
 
 ### CONCLUSIÓN:{.tabset .tabset-pills}
 
@@ -63,45 +81,56 @@ El nombre de la página (RIP tutorial) es un buen indicativo de la calidad instr
 
 ### 2. R Markdown {.tabset .tabset-pills}
 
-<div style=“text-align: justify”>
+<div style="text-align: justify">
 R Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas y informes de R. Markdown es un formato de sintaxis simple para crear documentos en HTML, PDF, y Word.
 A continuación, siguiendo con el mismo patrón que en el punto anterior, compararemos dos páginas de recursos para su aprendizaje que se pueden encontrar en Internet por su contenido, código y estética.
-En base a dichos puntos, concluiremos cuál es mejor y cuál peor para formarse y crear buenos documentos en formato R Markdown. <div/>
+En base a dichos puntos, concluiremos cuál es mejor y cuál peor para formarse y crear buenos documentos en formato R Markdown. </div>
+
 ### 2.1. Rstudio {.tabset .tabset-pills}
+
 Rstudio.com
 <center>Vista previa de RStudio</center>
-<div/>
+
+<div style="text-align: justify">
 - Contenido: Conciso y claro. Indicando
 - Código: Ejecución correcta.
 - Estética: Coherente. Estéticamente agradable, deja claro cómo se ve en un documento Markdown el código descrito
+</div>
 
 ### 2.2. R4ds {.tabset .tabset-pills}
 
 r4ds
 <center>Vista previa de r4ds</center>
-<div/>
+
 - Contenido:
 - Código:
 - Estética:
 
 ### CONCLUSIÓN: {.tabset .tabset-pills} 
-RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alcanza un documento RMarkdown. <div/>
-
+RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alcanza un documento RMarkdown.
 
 
 ![GitHub](recursos/logo.jpg)
 
 ## Sobre la base de datos
 
-Se va a hacer un análisis del conjunto de datos de R _*Beavers1*_
+Se va a hacer un análisis del conjunto de datos de R _*quakes*_
 
 Cada conjunto de datos, compila la temperatura del cuerpo de dos castores hembras, cada 10 minutos por un período menor a un día en el estado de Wisconsin, Estados Unidos
 
 ### Resumen de la base de datos:
 
+```{r quakes, echo=FALSE}
+knitr::kable(head(quakes) , align=rep('c', 5), caption = "Cabecera de datos", booktabs = T,  col.names = c("Latitud", "Longitud", "Profundidad", "Magnitud", "Estaciones")) %>%
+kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options = "striped", 
+              full_width = T)
+nrow(quakes)
+```
+
+
+
 ```{r beaver1, echo=FALSE}
-knitr::kable(summary(beaver1)
-             )
+knitr::kable(summary(beaver1))
 nrow(beaver1)
 ```
 
@@ -150,11 +179,11 @@ table(d_beaver1$activ)
 La siguiente tabla muestra la temperatura de los castores a traves del día, para Diciembre 12 únicamente. 
 
 
-
-
 ```{r grap1, echo = FALSE}
 n_beaver1 <- d_beaver1[d_beaver1$time > 500, ]
+
 # hay un corte en la secuencia de los datos, entonces solo se usaron a partir de las 500h
+
 plot(n_beaver1$time, n_beaver1$temp, type = "l", main = "Temp castores", xlab = "Hora", ylab = "Temp en C")
 ```
 
@@ -183,7 +212,36 @@ abline(h = -1, col = "red")
 
 En este gráfico observamos que la temperatura del cuerpo del animal tiende a ser constante en la media.  
 
+
+```{r facet, echo = FALSE}
+
+quakes$level <- cut(quakes$depth, 5, 
+  labels=c("Very Shallow", "Shallow", "Medium", "Deep", "Very Deep"))
+
+quakes.summary <- ddply(quakes, .(level), summarise, mag=round(mean(mag), 1))
+
+ggplot(quakes, aes(x=long, y=lat)) + 
+  geom_point(aes(colour=mag)) + 
+  geom_text(aes(label=mag), data=quakes.summary, x=185, y=-35) +
+  facet_grid(~level) + 
+  coord_map()
+```
+
+
+
+
 ## Conclusiones
 
 La base de datos estudiada no permite hacer mucha inferencia las caracteristicas del Castor Canadensis. Se puede decir a grandes rasgos, que para el día 12 de Diciembre de 1990, se tomó la temperatura a un ejemplar hembra Castor Canadensis en el estado de Wisconsin, Estados Unidos; y que este ejemplar mostró consistencia en la temperatura de su cuerpo. Se intuye, que los castores tienen mecanismos para equilibrar su temperatura corporal dependiendo a la temperatura ambiente.
 
+
+
+
+```{r tabla, echo = FALSE}
+
+dt <- quakes
+
+kable(dt, "latex")
+
+kable(dt, "latex", booktabs = T)
+```
