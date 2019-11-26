@@ -2,6 +2,14 @@
 
 >Autor: _Pavel Ramirez_
 
+<script>
+   $(document).ready(function() {
+     $head = $('#header');
+     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+   });
+</script>
+
+
 ## Contenido del documento
 
 Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta
