@@ -21,21 +21,14 @@ El proyecto consta de tres partes:
 1. Comparativa de dos fuentes de recursos:
 
   1.1 A
-<<<<<<< HEAD
-   Demystifying Regular Expressions in R
+  Demystifying Regular Expressions in R
   <https://www.r-bloggers.com/demystifying-regular-expressions-in-r/>
   
   1.2 B
   Simple Tutorial on Regular Expressions and String Manipulations in R
   <https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/>
-=======
-  Demystifying Regular Expressions in R
-  #https://www.r-bloggers.com/demystifying-regular-expressions-in-r/
-  1.2 B
-  Simple Tutorial on Regular Expressions and String Manipulations in R
-  https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/
 
->>>>>>> 6c3a7defb9678fb8b2c476f81482f90e09c1370b
+
 2. Comparativa de dos fuentes de recursos de Markdown:
 
   2.1 C
