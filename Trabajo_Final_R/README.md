@@ -1,13 +1,13 @@
-# Trabajo Final R
-
->Autor: _Pavel Ramirez_
-
 <script>
    $(document).ready(function() {
      $head = $('#header');
      $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
    });
 </script>
+
+# Trabajo Final R
+
+>Autor: _Pavel Ramirez_
 
 
 ## Contenido del documento
