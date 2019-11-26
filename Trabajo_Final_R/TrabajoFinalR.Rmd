@@ -26,8 +26,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 #install.packages("mapproj")
-
 # install.packages("kableExtra")
+
 library(knitr)
 library(kableExtra)
 
