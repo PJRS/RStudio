@@ -26,7 +26,10 @@ El proyecto consta de tres partes:
   1.2 B
   Simple Tutorial on Regular Expressions and String Manipulations in R
   <https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 2. Comparativa de dos fuentes de recursos de Markdown:
 
