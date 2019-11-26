@@ -2,6 +2,14 @@
 
 >Autor: _Pavel Ramirez_
 
+<script>
+   $(document).ready(function() {
+     $head = $('#header');
+     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+   });
+</script>
+
+
 ## Contenido del documento
 
 Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta
@@ -13,8 +21,11 @@ El proyecto consta de tres partes:
 1. Comparativa de dos fuentes de recursos:
 
   1.1 A
-  
+  Demystifying Regular Expressions in R
+  #https://www.r-bloggers.com/demystifying-regular-expressions-in-r/
   1.2 B
+  Simple Tutorial on Regular Expressions and String Manipulations in R
+  https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/
 
 2. Comparativa de dos fuentes de recursos de Markdown:
 
