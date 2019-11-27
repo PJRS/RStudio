@@ -2,6 +2,22 @@
 
 >Autor: _Pavel Ramirez_
 
+#<script>
+#   $(document).ready(function() {
+#     $head = $('#header');
+#     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+#   });
+#</script>
+
+
+<script>
+$(document).ready(function() {
+  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Recursos/logoEAE.png\" style=\"position:absolute; top:0; right:0; padding:20px; height:120px\"></div>');
+  $('#header').css('margin-right', '120px')
+});
+</script>
+
+
 ## Contenido del documento
 
 Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta
@@ -50,10 +66,3 @@ El proyecto consta de tres partes:
 7. Usar algún tipo de formato o tema especial (particularmente si lo adaptas tú) de Rmarkdown (5%)
 
 
-
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
-   });
-</script>
