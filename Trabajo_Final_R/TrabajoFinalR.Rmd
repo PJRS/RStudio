@@ -1,24 +1,26 @@
 ---
 title: "Trabajo Final R"
 author: "Pavel Ramirez Samaniego"
-date: "23/11/2019"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
-  html_document:
-    toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-    theme: spacelab
-    highlight: haddock
+  
+    #Para utilizar con Temas de PrettyDoc
+    prettydoc::html_pretty:
+    theme: tactile
+    highlight: vignette
+    #highlight: github
     
+    #Con tema basico
+    #html_document:
+    #toc: true
+    #toc_float:
+    #  collapsed: false
+    #  smooth_scroll: true
+    #theme: cosmo
+    #highlight: haddock      
 ---
 
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
-   });
-</script>
+![](Recursos/logoEAE.png)
 
 
 ```{r setup, include=FALSE}
@@ -26,7 +28,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 #install.packages("mapproj")
-# install.packages("kableExtra")
+#install.packages("kableExtra")
 
 library(knitr)
 library(kableExtra)
@@ -41,11 +43,12 @@ library(RColorBrewer)
 
 ```
 
+
 # INTRODUCCIÓN
 
 1. Recursos sobre expresiones regulares discutidas: Hackerearth y r-bloggers
-1. Recursos sobre markdown discutidas: Rstudio y r4ds
-1. Estudio descriptivo del dataset contenido en R ChickWeight.
+2. Recursos sobre markdown discutidas: Rstudio y r4ds
+3. Estudio descriptivo del dataset contenido en R, *_quakes_*, un dataset ya instalado en el programa
 
 ### 1. Expresiones Regulares {.tabset .tabset-pills}
 
@@ -112,7 +115,6 @@ r4ds
 RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alcanza un documento RMarkdown.
 
 
-![GitHub](recursos/logo.jpg)
 
 ## Sobre la base de datos
 

@@ -1,3 +1,7 @@
+## Para temas especiales
+install.packages("prettydoc")
+library(prettydoc)
+
 
 
 library(plyr)
@@ -163,4 +167,18 @@ library(devtools)
 remotes::install_github("miraisolutions/compareWith")
 
 
+#logo sin Shiny
+#<script>
+#   $(document).ready(function() {
+#     $head = $('#header');
+#     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
+#   });
+#</script>
 
+#Otra manera de poner el logo sin Shiny
+#```{js logo-js, echo=FALSE}
+#$(document).ready(function() {
+#  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Recursos/logoEAE.png\" #style=\"position:absolute; top:0; right:0; padding:20px; height:120px\"></div>');
+#  $('#header').css('margin-right', '120px')
+#});
+#```
