@@ -1,6 +1,6 @@
 ---
 title: "Trabajo Final del Curso de Business Performance Analysis"
-author: "Pavel Ramirez Samaniego"
+author: "Pavel J. Ramírez Samaniego"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   
@@ -20,7 +20,7 @@ output:
     #highlight: haddock      
 ---
 
-![](Recursos/logoEAE.png)
+<center>![](Recursos/logoEAE.png)</center>
 
 ```{r setup, include=FALSE}
 
@@ -28,11 +28,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##instalar paquetes:
 
-#install.packages("ggplot2")
-#install.packages("plyr")
-#install.packages("mapproj")
+#install.packages("ggplot2") #3.2.1
+#install.packages("plyr") #1.8.4
+#install.packages("mapproj") #1.2.6
 #install.packages("kableExtra")
-#install.packages("rmarkdown")
+#install.packages("rmarkdown") #1.18
+#install.packages("leaflet") #2.0.3
+#install.packages("shiny") #1.4.0 ->#2.0.3
+#install.packages("RColorBrewer") #1.1-2
 
 ## Librerias Requeridas
 library(knitr)
@@ -51,22 +54,25 @@ library(RColorBrewer)
 
 # INTRODUCCIÓN
 
+<div style="text-align: justify">
 El objetivo de este proyecto es poner en práctica los conocimientos más relevantes adquiridos a lo largo del curso de **Business Performance Analysis**, como parte del _Master de Big Data y Analytics de la EAE Business School_ que incluyen temas como: RMarkdown, temas personalizados, expresiones regulares, gráficos basados en ggplot2, entre otros puntos.
 
 Puntos a tratar: 
 
 1. Recursos sobre expresiones regulares analizadas de las páginas de Hackerearth y R-Bloggers.
-2. Recursos sobre markdown analizadas: Rstudio y r4ds
-3. Analisis de Datos, un estudio descriptivo del dataset contenido en R, *_quakes_*, un dataset que contiene los 1000 eventos registrados cerca de Fiji desde 1964.
+2. Recursos sobre markdown analizadas de las páginas de Rstudio y Bookdown.
+3. Análisis de Datos, un estudio descriptivo del dataset contenido en R, *_quakes_*, un dataset que contiene los 1000 eventos registrados cerca de Fiji desde 1964.
+</div>
 
---------------------------------------------------------------------------------------
-
+----------------------------------
 
 # 1. Expresiones Regulares {.tabset .tabset-pills}
 
+----------------------------------
+
 <div style="text-align: justify">
 Expresión regular, también conocida como regex, regexp o expresión racional, es una secuencia de caracteres que forma un patrón de búsqueda, principalmente utilizada para la búsqueda de patrones de cadenas de caracteres u operaciones de sustituciones.
-A continuación, un breve anallisis de dos páginas de recursos para su analisis que se pueden encontrar en Internet.
+A continuación, un breve anallisis de dos páginas de recursos para su análisis que se pueden encontrar en Internet.
 
 1.1. [_R-Bloggers_](http://tiny.cc/g9zzgz)
 
@@ -80,70 +86,89 @@ A continuación, un breve anallisis de dos páginas de recursos para su analisis
 
 
 <div style="text-align: justify">
-El artículo _Demystifying Regular Expressions in R_ nos propone una exposición concreta y concisa del concepto de "Expresiones Regulares" desde la perspectiva de un desarrollador/ analista de datos. No obstante estar orientado a un público con conocimientos técnicos, notamos que el estilo y el léxico elegidos por el autor hacen que el artículo resulte entendible para cualquier individuo interesado en la materia, al margen de su nivel o experiencia como programador.
+El artículo _Demystifying Regular Expressions in R_ escrito por el "Rsquared Academy Blog", nos enseña acerca de las expresiones regulares orientado para principiantes. El artículo está dividido en 3 partes. La primera en funciones como _such_, _grep_, _grepl_, entre otros. En la segunda parte se refiere a los nombres de los paquetes que se utiliza y para terminarse enfoca en 4 casos de estudios.
 
-El autor define una expresión regular como una cadena de texto que determina un patrón de búsqueda, idea con la que fácilmente podemos inferir el potencial que las expresiones regulares poseen al momento de gestionar datos en general, y de manejar texto en particular. Asimismo, se deja en claro cuáles son los usos principales para los patrones creados con las expresiones regulares:
+El autor define una expresión regular como un texto especial para identificar patrones que puede usarse para:
 
-1. Encontrar un trozo de texto dentro de un texto más grande.
-2. Validar que el texto encontrado cumple con un formato deseado.
-3. Reemplazar o insertar texto.
-4. Partir cadenas de texto.
+- Buscar
+- Reemplazar
+- Validar
+- Extraer
+
+Lo bueno del artículo es que demuestra con gráficos como funciona cada una de las expresiones
 </div>
 
 ## 1.2. Hackerearth {.tabset .tabset-pills}
 [_Simple Tutorial on Regular Expressions and String Manipulations in R_](http://tiny.cc/v30zgz)
 
 <div style="text-align: justify">
-- Contenido: Escaso y poco claro. Destaca las cuestiones teóricas básicas, sin poner ejemplos de ello. Para un usuario que se está iniciando con este lenguaje resulta complicado su comprendimiento y aplicación práctica.
-- Código: Limitado. Más allá de enlace a otras páginas web y cambio de color sin un patrón o lógica claros, no existe un código formulado de cierta complejidad.
-- Estética: Estresante. No cumple la normativa ortotipográfica ya que, tiene un color destacado y un tamaño de fuente mayor los subtítulos dentro de las secciones.
-</div>
 
-## CONCLUSIÓN:{.tabset .tabset-pills}
+El artículo escrito por _Manish Saraswat_, describe como Expresión Regular como un conjunto de patrones usados para detectar secuencia de caracteres en un texto largo de datos. También comenta que con el uso de Expresiones Regulares uno puede extraer mas texto de datos con poco código.
 
-El nombre de la página (RIP tutorial) es un buen indicativo de la calidad instructiva del mismo. En mi opinión, llamarle tutorial es excederse. Por lo tanto, tras compararlo con los recursos que hay en RPubs, llegamos a la determinación de que este último es mejor para el aprendizaje sobre las regex. <div/>
+El autor divide las Expresiones Regulares en 5 categorias:
+
+- Metacharacters
+- Sequences
+- Quantifiers
+- Character Classes
+- POSIX character classes
+
+Lo bueno del artículo es que tiene bastantes ejemplos en cada una de las Expresioens Regulares.
+
+## 1.3 Conclusión:{.tabset .tabset-pills}
+
+El artículo de _R-Bloggers_ está mas orientado a personas que recién se inician en el mundo de las Expresiones Regulares por las imágenes que explican como funciona cada una. Por lo tanto, se llega a la conclusión que es mejor artículo para principiantes que el artículo de _Hackerearth_. <div/>
 
 
---------------------------------------------------------------------------------------
-
+----------------------------------
 
 # 2. Recursos R Markdown {.tabset .tabset-pills}
 
+----------------------------------
+
 <div style="text-align: justify">
-R Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas y informes de R. Markdown es un formato de sintaxis simple para crear documentos en HTML, PDF, y Word.
-A continuación, siguiendo con el mismo patrón que en el punto anterior, compararemos dos páginas de recursos para su aprendizaje que se pueden encontrar en Internet por su contenido, código y estética.
-En base a dichos puntos, concluiremos cuál es mejor y cuál peor para formarse y crear buenos documentos en formato R Markdown. </div>
+Segun la página principal de R Markdown, proporciona un marco de creación para la ciencia de datos, se puede usar un solo archivo R Markdown para:
+
+ - guardar y ejecutar código
+ - generar informes de alta calidad que se puedan compartir con una audiencia
+ 
+Los documentos de R Markdown son totalmente reproducibles y admiten docenas de formatos de salida estáticos y dinámicos.
+
+En este parte del proyecto analizaremos los siguientes contenidos sobre herramientas de R Markdown:
+
+2.1	[_R Markdown from R Studio_](http://tiny.cc/mda0gz)
+
+2.2	[_R Markdown: The Definitive Guide_](http://tiny.cc/19a0gz)
+
+</div>
 
 ## 2.1. Rstudio {.tabset .tabset-pills}
 
-Rstudio.com
-<center>Vista previa de RStudio</center>
+[Markdown from R Studio](http://tiny.cc/mda0gz)
 
 <div style="text-align: justify">
-- Contenido: Conciso y claro. Indicando
-- Código: Ejecución correcta.
-- Estética: Coherente. Estéticamente agradable, deja claro cómo se ve en un documento Markdown el código descrito
+Página oficial de RMarkdown, que detalla todas las características de la herramienta. Tiene un contenido consiso y claro. Indica todas las características de la herramienta con ejemplos con código. Tiene una estética coherente y agradable. 
+Uno de los puntos fuertes de este artículo es la que tiene ejemplos con capturas de pantalla que ayudan a comprender todas las opciones que tiene la herrmienta.
 </div>
 
-## 2.2. R4ds {.tabset .tabset-pills}
+## 2.2. R Markdown from Bookdown {.tabset .tabset-pills}
 
-r4ds
-<center>Vista previa de r4ds</center>
-
-- Contenido:
-- Código:
-- Estética:
-
-### CONCLUSIÓN: {.tabset .tabset-pills} 
-RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alcanza un documento RMarkdown.
-
---------------------------------------------------------------------------------------
+[R Markdown: The Definitive Guide](http://tiny.cc/19a0gz)
+<div style="text-align: justify">
+Libro del 2018, de los autores Yihui Xie, J. J. Allaire y Garrett Grolemund. Libro muy bien explicado en linea de todo lo relacionado con RMarkdown, es el primer libro oficial escrito por los desarrolladores principales de R Markdown que proporciona una referencia completa y precisa al ecosistema de R Markdown. Con R Markdown, puede crear fácilmente informes de análisis de datos reproducibles, presentaciones, paneles, aplicaciones interactivas, libros, disertaciones, sitios web y artículos de revistas, mientras disfruta de la simplicidad de Markdown y el gran poder de R y otros lenguajes de programación.
+</div>
 
 
+## 2.3 Conclusión: {.tabset .tabset-pills} 
+<div style="text-align: justify">
+La página oficial de RStudio es un buen recurso, para saber lo básico que alcanza un documento RMarkdown, pero si se quiere mas detalles es una buena opción el libro en linea para tener mas detalles de algunas características de la herrmienta.
+</div>
 
-# 3. ANALISIS DE DATOS
+----------------------------------
 
-________________________________________________________________
+# 3. ANÁLISIS DE DATOS
+
+----------------------------------
 
 ## 3.1 Sobre la base de  o dataset
 
@@ -151,9 +176,11 @@ Se va a hacer un análisis del conjunto de datos de R _*quakes*_
 
 ### Detalles
 
+<div style="text-align: justify">
 Hay dos planos claros de actividad sísmica. Uno es una unión de placa principal; la otra es la trinchera de Tonga frente a Nueva Zelanda. Estos datos constituyen una submuestra de un conjunto de datos más grande que contiene 5000 observaciones.
 
 El conjunto de datos proporciona las ubicaciones de 1000 eventos sísmicos de MB> 4.0. Los eventos ocurrieron en un cubo cerca de Fiji desde 1964
+</div>
 
 ## 3.2 Tabla Resumen de la base de datos (dataset):
 
@@ -164,44 +191,45 @@ kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options =
 
 ```
 
-### Cantidad de datos en el dataset:
-
-```{r cantidad de datos, echo=FALSE}
-nrow(quakes)
-```
---------------------------------------------------------------------------------------
-
 
 ## 3.3 Entender y preparar los datos
 
-### Entender las variables
+### 3.3.1 Estructura de los datos en el dataset:
 
-> Latitud - lat
-
-La variable Latitud o **lat**, es el valor numérico	de la Latitud geografica del evento.
-
-> Longitud - long
-
-La variable Longitud o **long** es el valor numérico	de la Longitud geografica del evento.
+```{r cantidad de datos, echo=FALSE}
+str(quakes)
+```
 
 
-> Profundidad - depth
+### 3.3.2 Entender las variables
 
-La variable Profundidad o **depth** es el valor numérico de la profundidad en kilometros.
+> Latitud (lat)
+
+La variable Latitud o **lat**, es el valor numérico	de la Latitud geográfica del evento.
+
+> Longitud (long)
+
+La variable Longitud o **long** es el valor numérico	de la Longitud geográfica del evento.
 
 
-> Magnitud - mag
+> Profundidad (depth)
+
+La variable Profundidad o **depth** es el valor numérico de la profundidad en kilómetros.
+
+
+> Magnitud (mag)
 
 La variable Magnitud o **mag** es el valor numérico de la magnitud en la escala de Richter.
 
-> Estaciones - stations
+> Estaciones (stations)
 
 La variable Estaciones o **stations** es el valor numérico de la cantidad de estaciones que informan.
 
 ## 3.4 Gráficos
 
-En este gráfico de facetas observamos por grupos la profundidad de los terremotos por su magnitud y su ubicación.
+### 3.4.1 Gráfico por faces
 
+En este gráfico de facetas observamos por grupos la profundidad de los terremotos por su magnitud y su ubicación.
 
 ```{r facetas, echo = FALSE}
 
@@ -215,12 +243,11 @@ ggplot(quakes, aes(x=long, y=lat)) +
   geom_text(aes(label=mag), data=quakes.summary, x=185, y=-35) +
   facet_grid(~level) + 
   coord_map()+
-   labs(title = "Niveles de profundidad de los evento", 
+   labs(title = "Niveles por profundidad de los evento", 
        subtitle = "5 tipos de magnitudes segun la escala de Richter",
        x = "Longitud", 
        y = "Latitud")
 ```
-
 
 ```{r facetas2 , echo = FALSE}
 
@@ -233,7 +260,7 @@ ggplot(quakes, aes(x=long, y=lat)) +
   geom_text(aes(label=mag), data=quakes.summary, x=185, y=-35) +
   facet_grid(~level) + 
   coord_map()+
-   labs(title = "Niveles de profundidad de los evento", 
+   labs(title = "Niveles por profundidad de los evento", 
        subtitle = "Las 2 mayores cantidades de eventos segun la escala de Richter",
        x = "Longitud", 
        y = "Latitud")
@@ -242,14 +269,11 @@ ggplot(quakes, aes(x=long, y=lat)) +
 
 
 
-## Grafico Dinámico
+### 3.4.2 Gráfico Dinámico
 
 <div style="text-align: justify">
-Con este grafico dinamico podemos ver los puntos geograficos donde ocurrieron los terremotos o sismos de acuerdo a su intensidad y se puede acercar o alejar para tener mayor detalle de la ubicacion.
-
-
+Con este gráfico dinámico podemos ver los puntos geográficos donde ocurrieron los terremotos o sismos de acuerdo a su intensidad y se puede acercar o alejar para tener mayor detalle de la ubicación del evento.
 </div>
-
 
 
 ```{r shiny, echo = FALSE}
@@ -326,8 +350,9 @@ shinyApp(ui, server)
 ```
 
 
-## Conclusiones
+## 3.3 Conclusiones
 
 <div style="text-align: justify">
-La base de datos estudiada permite ver ubicacion los lugares exactos de donde ocurrieron los terremotos con las distintas magnitudes y sirve para ver como es el recorido de las ondas segun su intensidad.
+La base de datos estudiada permite ver ubicación los lugares exactos de donde ocurrieron los terremotos con las distintas magnitudes y sirve para ver como es el recorrido de las ondas según su intensidad.
+En el gráfico por faces se puede ver que las magnitudes de más de 4.6 son las mas recurrentes durante la toma de información.
 </div>
