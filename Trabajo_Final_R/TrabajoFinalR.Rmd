@@ -22,7 +22,6 @@ output:
 
 ![](Recursos/logoEAE.png)
 
-
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,8 +45,8 @@ library(RColorBrewer)
 
 # INTRODUCCIÓN
 
-1. Recursos sobre expresiones regulares discutidas: Hackerearth y r-bloggers
-2. Recursos sobre markdown discutidas: Rstudio y r4ds
+1. Recursos sobre expresiones regulares analizadas: Hackerearth y r-bloggers
+2. Recursos sobre markdown analizadas: Rstudio y r4ds
 3. Estudio descriptivo del dataset contenido en R, *_quakes_*, un dataset ya instalado en el programa
 
 ### 1. Expresiones Regulares {.tabset .tabset-pills}
@@ -59,6 +58,8 @@ A continuación, compararemos dos páginas de recursos para su aprendizaje que s
 
 ### 1.1. RPubs {.tabset .tabset-pills}
 
+ <https://www.r-bloggers.com/demystifying-regular-expressions-in-r/>
+ 
 RPubs es el primer recurso que vamos a estudiar:
 <center>Vista previa de RPubs</center>
 
@@ -70,6 +71,8 @@ RPubs es el primer recurso que vamos a estudiar:
 
 ### 1.2. Riptutorial {.tabset .tabset-pills}
 
+ <https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/>
+ 
 Riptutorial es el segundo recurso que vamos a estudiar:
 <center>Vista previa de Riptutorial</center>
 
@@ -84,7 +87,7 @@ Riptutorial es el segundo recurso que vamos a estudiar:
 
 El nombre de la página (RIP tutorial) es un buen indicativo de la calidad instructiva del mismo. En mi opinión, llamarle tutorial es excederse. Por lo tanto, tras compararlo con los recursos que hay en RPubs, llegamos a la determinación de que este último es mejor para el aprendizaje sobre las regex. <div/>
 
-### 2. R Markdown {.tabset .tabset-pills}
+### 2. Recursos R Markdown {.tabset .tabset-pills}
 
 <div style="text-align: justify">
 R Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas y informes de R. Markdown es un formato de sintaxis simple para crear documentos en HTML, PDF, y Word.
@@ -120,23 +123,27 @@ RStudio es muy buen recurso para, de un vistazo, poder saber lo básico que alca
 
 Se va a hacer un análisis del conjunto de datos de R _*quakes*_
 
-Cada conjunto de datos, compila la temperatura del cuerpo de dos castores hembras, cada 10 minutos por un período menor a un día en el estado de Wisconsin, Estados Unidos
+### Detalles
 
-### Resumen de la base de datos:
+Hay dos planos claros de actividad sísmica. Uno es una unión de placa principal; la otra es la trinchera de Tonga frente a Nueva Zelanda. Estos datos constituyen una submuestra de un conjunto de datos más grande que contiene 5000 observaciones.
+
+El conjunto de datos proporciona las ubicaciones de 1000 eventos sísmicos de MB> 4.0. Los eventos ocurrieron en un cubo cerca de Fiji desde 1964
+
+### Tabla Resumen de la base de datos (dataset):
 
 ```{r quakes, echo=FALSE}
 knitr::kable(head(quakes) , align=rep('c', 5), caption = "Cabecera de datos", booktabs = T,  col.names = c("Latitud", "Longitud", "Profundidad", "Magnitud", "Estaciones")) %>%
 kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options = "striped", 
               full_width = T)
+
+```
+
+### Cantidad de datos en el dataset:
+
+```{r cantidad de datos, echo=FALSE}
 nrow(quakes)
 ```
 
-
-
-```{r beaver1, echo=FALSE}
-knitr::kable(summary(beaver1))
-nrow(beaver1)
-```
 
 # ANALISIS DE DATOS
 
@@ -144,83 +151,37 @@ nrow(beaver1)
 
 ### Entender las variables
 
-> day
+> Latitud
 
-La variable **day**, es el día en que se hizo la observación. Solo se observan dos días. Diciembre 12 = 346 y Diciembre 13 = 347.
-Vamos a convertir esta base de datos en una serie de tiempo, dejando solo los datos de Diciembre 12
+La variable Latitud o **lat**, es el valor numérico	de la Latitud geografica del evento.
 
-```{r unirtablas, echo=FALSE}
-d_beaver1 <- beaver1[beaver1$day == 346, ]
-```
+> Longitud
 
-
-> time
-
-La variable **time** es una variable continua. Contiene la hora en que se tomó la muestra de temperatura. Esta en formato militar 0330, equivalente a 3:30
+La variable Longitud o **long** es el valor numérico	de la Longitud geografica del evento.
 
 
-> temp
+> Profundidad
 
-La variable **temp** esta en grados Celsius, estadarizada con la formúla:
-
-\usepackage{gensymb}
+La variable Profundidad o **depth** es el valor numérico de la profundidad en kilometros.
 
 
-$$ fahrenheit = celsius \times \frac{9}{5} + 32 $$
+> Magnitud
 
-> activ
+La variable Magnitud o **mag** es el valor numérico de la magnitud en la escala de Richter.
 
-Esta es una variable binomial. Donde 0 = no tuvo actividad fuera del campo. Y 1 = tuvo actividad fuera del campo.
+> Estaciones
 
-```{r activ, echo = FALSE}
-table(d_beaver1$activ)
-```
-
-
+La variable Estaciones o **stations** es el valor numérico de la cantidad de estaciones que informan.
 
 ## Gráficos
 
-La siguiente tabla muestra la temperatura de los castores a traves del día, para Diciembre 12 únicamente. 
+En este gráfico de facetas observamos por grupos la profundidad de los terremotos por su magnitud y su ubicacion.
 
 
-```{r grap1, echo = FALSE}
-n_beaver1 <- d_beaver1[d_beaver1$time > 500, ]
-
-# hay un corte en la secuencia de los datos, entonces solo se usaron a partir de las 500h
-
-plot(n_beaver1$time, n_beaver1$temp, type = "l", main = "Temp castores", xlab = "Hora", ylab = "Temp en C")
-```
-
-
-No se observa una tendencia contundente en la temperatura del cuerpo de los castores a traves del día. Esto resulta extraño, pues la periodicidad en la toma de muestra es de 10 minutos.
-
-Según <https://es.weatherspark.com/> la temperatura ambiente promedio en Wisconsin, para el día 12 de Diciembre oscila entre 2 C y -4 C. 
-
-Por motivos de este ejercicio, se va a generar una variable de temperatura del ambiente **temp_ambiente** con distribución $N(µ= -1, σ=1)$
-Y se va a desorderar la variable **temp** para comparar las dos variables
-
-```{r distri, echo = FALSE}
-temp_ambiente <- rnorm(nrow(n_beaver1), -1, 1)
-```
-
-```{r graptemp, echo = FALSE}
-set.seed(6543)
-tempcastor <- sample(n_beaver1$temp)
-
-
-plot(tempcastor, temp_ambiente, main = "Temp ambiente vs Temp castor")
-abline(v = mean(n_beaver1$temp), col = "blue")
-abline(h = -1, col = "red")
-
-```
-
-En este gráfico observamos que la temperatura del cuerpo del animal tiende a ser constante en la media.  
-
-
-```{r facet, echo = FALSE}
+```{r facetas, echo = FALSE}
 
 quakes$level <- cut(quakes$depth, 5, 
-  labels=c("Very Shallow", "Shallow", "Medium", "Deep", "Very Deep"))
+  labels=c("Muy poco profundo", "Poco profundo", "Medio Profundo", "Profundo", "Muy profundo"))
 
 quakes.summary <- ddply(quakes, .(level), summarise, mag=round(mean(mag), 1))
 
@@ -228,32 +189,29 @@ ggplot(quakes, aes(x=long, y=lat)) +
   geom_point(aes(colour=mag)) + 
   geom_text(aes(label=mag), data=quakes.summary, x=185, y=-35) +
   facet_grid(~level) + 
-  coord_map()
+  coord_map()+
+   labs(title = "Niveles de profundidad de los evento", 
+       subtitle = "5 tipos de magnitudes segun la escala de Richter",
+       x = "Longitud", 
+       y = "Latitud")
 ```
 
 
 
 
-## Conclusiones
+## Grafico Dinámico
 
-La base de datos estudiada no permite hacer mucha inferencia las caracteristicas del Castor Canadensis. Se puede decir a grandes rasgos, que para el día 12 de Diciembre de 1990, se tomó la temperatura a un ejemplar hembra Castor Canadensis en el estado de Wisconsin, Estados Unidos; y que este ejemplar mostró consistencia en la temperatura de su cuerpo. Se intuye, que los castores tienen mecanismos para equilibrar su temperatura corporal dependiendo a la temperatura ambiente.
+<div style="text-align: justify">
+Con este grafico dinamico podemos ver los puntos geograficos donde ocurrieron los terremotos o sismos de acuerdo a su intensidad y se puede acercar o alejar para tener mayor detalle de la ubicacion.
 
 
+</div>
 
-
-```{r tabla, echo = FALSE}
-
-dt <- quakes
-
-kable(dt, "latex")
-
-kable(dt, "latex", booktabs = T)
-```
 
 
 ```{r shiny, echo = FALSE}
-# Con Shiny
 
+# Con Shiny
 
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
@@ -262,38 +220,37 @@ ui <- bootstrapPage(
                 sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),
                             value = range(quakes$mag), step = 0.1
                 ),
-                selectInput("colors", "Color Scheme",
+                selectInput("colors", "Esquema de Colores",
                             rownames(subset(brewer.pal.info, category %in% c("seq", "div")))
                 ),
-                checkboxInput("legend", "Show legend", TRUE)
+                checkboxInput("legend", "Mostrar legenda", TRUE)
   )
 )
 
 server <- function(input, output, session) {
   
-  # Reactive expression for the data subsetted to what the user selected
+  # Expresión reactiva para los datos subconjuntos a lo que el usuario seleccionó
   filteredData <- reactive({
     quakes[quakes$mag >= input$range[1] & quakes$mag <= input$range[2],]
   })
   
-  # This reactive expression represents the palette function,
-  # which changes as the user makes selections in UI.
+  # Esta expresión reactiva representa la función de paleta,
+  # que cambia a medida que el usuario realiza selecciones en la Interfaz de Usuario (UI).
   colorpal <- reactive({
     colorNumeric(input$colors, quakes$mag)
   })
   
   output$map <- renderLeaflet({
-    # Use leaflet() here, and only include aspects of the map that
-    # won't need to change dynamically (at least, not unless the
-    # entire map is being torn down and recreated).
+    # Uso de leaflet() aqui, y solo incluye aspectos del mapa que
+    # no necesitará cambiar dinámicamente (al menos, no a menos que
+    # todo el mapa esté siendo derribado y recreado).
     leaflet(quakes) %>% addTiles() %>%
       fitBounds(~min(long), ~min(lat), ~max(long), ~max(lat))
   })
   
-  # Incremental changes to the map (in this case, replacing the
-  # circles when a new color is chosen) should be performed in
-  # an observer. Each independent set of things that can change
-  # should be managed in its own observer.
+    # Los cambios incrementales en el mapa (en este caso, reemplazando 
+    # los círculos cuando se elige un nuevo color) deben realizarse en un observador.
+    # Cada conjunto independiente de cosas que pueden cambiar debe gestionarse en su propio observador.
   observe({
     pal <- colorpal()
     
@@ -304,12 +261,12 @@ server <- function(input, output, session) {
       )
   })
   
-  # Use a separate observer to recreate the legend as needed.
+  # Use un observador separado para recrear la leyenda según sea necesario.
   observe({
     proxy <- leafletProxy("map", data = quakes)
     
-    # Remove any existing legend, and only if the legend is
-    # enabled, create a new one.
+    # Elimine cualquier leyenda existente, y solo 
+    # si la leyenda está habilitada, cree una nueva.
     proxy %>% clearControls()
     if (input$legend) {
       pal <- colorpal()
@@ -325,3 +282,9 @@ shinyApp(ui, server)
 
 ```
 
+
+## Conclusiones
+
+<div style="text-align: justify">
+La base de datos estudiada permite ver ubicacion los lugares exactos de donde ocurrieron los terremotos con las distintas magnitudes y sirve para ver como es el recorido de las ondas segun su intensidad.
+</div>
