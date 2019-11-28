@@ -196,8 +196,13 @@ kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options =
 
 ### 3.3.1 Estructura de los datos en el dataset:
 
-```{r cantidad de datos, echo=FALSE}
+```{r tipo de datos, echo=FALSE}
 str(quakes)
+```
+
+_Distribucion de los variables_
+```{r distribucion de datos, echo=FALSE}
+plot(quakes, pch=20, col=rgb(0,0,0,.1) , lwd=.6) 
 ```
 
 
@@ -266,10 +271,13 @@ ggplot(quakes, aes(x=long, y=lat)) +
        y = "Latitud")
 ```
 
+### Gráfica usando la libreria _ggthemes_
 
+```{r ggthemes, echo = FALSE}
+qplot(data = quakes, x = lat, y = long, size = exp(mag), color = mag, alpha = I(.8)) 
+```
 
-
-### 3.4.2 Gráfico Dinámico
+### 3.4.2 Gráfico Dinámico con Shiny
 
 <div style="text-align: justify">
 Con este gráfico dinámico podemos ver los puntos geográficos donde ocurrieron los terremotos o sismos de acuerdo a su intensidad y se puede acercar o alejar para tener mayor detalle de la ubicación del evento.
@@ -277,8 +285,6 @@ Con este gráfico dinámico podemos ver los puntos geográficos donde ocurrieron
 
 
 ```{r shiny, echo = FALSE}
-
-# Con Shiny
 
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
@@ -348,7 +354,6 @@ shinyApp(ui, server)
 
 
 ```
-
 
 ## 3.3 Conclusiones
 

@@ -19,9 +19,11 @@ Proyecto Final de la asignatura de Business Performance Analysis, que forma part
 <li><code>install.packages("leaflet") #2.0.3 </code></li>
 <li><code>install.packages("shiny") #1.4.0 ->#2.0.3 </code></li>
 <li><code>install.packages("RColorBrewer") #1.1-2 </code></li>
+</ul>
 
 ## Librerias Requeridas
 
+<ul>
 <li><code>library(knitr)</code></li>
 <li><code>library(kableExtra)</code></li>
 <li><code>library(mapproj)</code></li>
@@ -48,9 +50,10 @@ El proyecto consta de tres partes:
 
 3. Estudio descriptivo:
 
-  3.1. Un gráfico generado con `ggplot2`.
+  3.1. Tabla resumen.
+  
+  3.2. Gráficos: uno generado con `ggplot2` con facetas y otro dinámico son shiny.
 
-  3.2. Una tabla.
 
 ## Versión avanzada
 
