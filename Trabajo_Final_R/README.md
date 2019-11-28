@@ -4,10 +4,30 @@
 
 >Autor: _Pavel Ramirez_
 
-
 ## Contenido del documento
 
-Entrega final de la asignatura R del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta
+Proyecto Final de la asignatura de Business Performance Analysis, que forma parte del Máster en Big Data & Analytics, impartida por el profesor Carlos J. Gil Bellosta.
+
+## Paquetes que se necesitan instalar:
+
+<ul>
+<li><code>install.packages("ggplot2") #3.2.1 </code></li>
+<li><code>install.packages("plyr") #1.8.4 </code></li>
+<li><code>install.packages("mapproj") #1.2.6 </code></li>
+<li><code>install.packages("kableExtra") #1.1.0</code></li>
+<li><code>install.packages("rmarkdown") #1.18 </code></li>
+<li><code>install.packages("leaflet") #2.0.3 </code></li>
+<li><code>install.packages("shiny") #1.4.0 ->#2.0.3 </code></li>
+<li><code>install.packages("RColorBrewer") #1.1-2 </code></li>
+
+## Librerias Requeridas
+
+<li><code>library(knitr)</code></li>
+<li><code>library(kableExtra)</code></li>
+<li><code>library(mapproj)</code></li>
+<li><code>library(plyr)</code></li>
+<li><code>library(ggplot2)</code></li>
+</ul>
 
 ## Versión Básica
 
@@ -15,20 +35,16 @@ El proyecto consta de tres partes:
 
 1. Comparativa de dos fuentes de recursos:
 
-  1.1 A
-  Demystifying Regular Expressions in R
-  <https://www.r-bloggers.com/demystifying-regular-expressions-in-r/>
-  
-  1.2 B
-  Simple Tutorial on Regular Expressions and String Manipulations in R
-  <https://www.hackerearth.com/practice/machine-learning/advanced-techniques/regular-expressions-string-manipulation-r/tutorial/>
+  1.1. [_R-Bloggers_](http://tiny.cc/g9zzgz)
+
+  1.2. [_Hackerearth_](http://tiny.cc/v30zgz)
 
 
 2. Comparativa de dos fuentes de recursos de Markdown:
 
-  2.1 C
-  
-  2.2 D
+  2.1	[_R Markdown from R Studio_](http://tiny.cc/mda0gz)
+
+  2.2	[_R Markdown: The Definitive Guide_](http://tiny.cc/19a0gz)
 
 3. Estudio descriptivo:
 
