@@ -200,7 +200,7 @@ kable_styling(latex_options = c("striped", "hold_position"), bootstrap_options =
 str(quakes)
 ```
 
-_Distribucion de los variables_
+_Distribución de las variables_
 ```{r distribucion de datos, echo=FALSE}
 plot(quakes, pch=20, col=rgb(0,0,0,.1) , lwd=.6) 
 ```
