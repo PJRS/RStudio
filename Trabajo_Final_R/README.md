@@ -1,21 +1,8 @@
+![](Recursos/logoEAE.png)
+
 # Trabajo Final R
 
 >Autor: _Pavel Ramirez_
-
-#<script>
-#   $(document).ready(function() {
-#     $head = $('#header');
-#     $head.prepend('<img src=\"Recursos/logoEAE.png\" style=\"float: right;width: 300px;\"/>')
-#   });
-#</script>
-
-
-<script>
-$(document).ready(function() {
-  $('#header').parent().prepend('<div id=\"logo\"><img src=\"Recursos/logoEAE.png\" style=\"position:absolute; top:0; right:0; padding:20px; height:120px\"></div>');
-  $('#header').css('margin-right', '120px')
-});
-</script>
 
 
 ## Contenido del documento
